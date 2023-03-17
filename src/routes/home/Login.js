@@ -1,9 +1,11 @@
+import LoginForm from '../../components/login/LoginForm';
+
 function Login() {
     return (
         <>
-            <div className="text-center">
-                <div className="mb-3">Naver</div>
-                <div>Google</div>
+            <div className="w-screen h-screen text-center">
+                <h1 className="mb-12 text-4xl">로그인</h1>
+                <LoginForm />
             </div>
         </>
     );

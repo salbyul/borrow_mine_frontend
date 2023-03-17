@@ -1,7 +1,7 @@
 function BorrowComponent({ post }) {
     return (
         <>
-            <div className="w-96 mb-12 duration-300 hover:w-1/4 hover:duration-300">
+            <div className="w-3/12 mb-12 duration-300 hover:w-4/12 hover:duration-300">
                 <a href={`/borrow/${post.id}`}>
                     <img
                         src={`data:image/jpeg;base64,${post.imageDtoList[0].image}`}
