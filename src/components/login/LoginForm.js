@@ -1,4 +1,41 @@
+import axios from 'axios';
+import { useState } from 'react';
+import { useCookies } from 'react-cookie';
+
 function LoginForm() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [cookies, setCookie, removeCookie] = useCookies([]);
+
+    const onEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const onPasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const onLoginClick = () => {
+        if (email === '' || password === '') {
+            alert('이메일과 비밀번호를 입력해주세요.');
+            return;
+        }
+        const member = {
+            email: email,
+            password: password,
+        };
+        axios
+            .post('http://localhost:8080/member/login', member)
+            .then((response) => {
+                setCookie('SKAT', response.data.token);
+                window.location.href = '/';
+            })
+            .catch((error) => {
+                if (error.response.data.code === 1) {
+                    alert('아이디나 비밀번호를 확인해주세요.');
+                }
+            });
+    };
     return (
         <>
             <div className="border mx-auto w-2/12 py-3">
@@ -8,16 +45,21 @@ function LoginForm() {
                             type="text"
                             placeholder="Email"
                             className="px-2 border rounded-sm mb-3 w-10/12 h-5 block text-xs placeholder:text-xs"
+                            value={email}
+                            onChange={onEmailChange}
                         />
                         <input
                             type="password"
                             placeholder="Password"
                             className="px-2 border rounded-sm w-10/12 h-5 block text-xs placeholder:text-xs"
+                            value={password}
+                            onChange={onPasswordChange}
                         />
                     </div>
                     <button
                         type="button"
                         className="text-xs border w-3/12 bg-gray-50 rounded-sm duration-150 hover:duration-150 hover:bg-gray-100"
+                        onClick={onLoginClick}
                     >
                         로그인
                     </button>

@@ -71,7 +71,6 @@ function JoinForm() {
             return;
         }
         setAddressError(false);
-        // TODO
         const form = {
             email: email,
             password: password,

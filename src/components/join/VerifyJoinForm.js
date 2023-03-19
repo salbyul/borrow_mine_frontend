@@ -10,6 +10,7 @@ class VerifyJoinForm {
         }
         return false;
     };
+    // TODO 닉네임 제약조건 필요??
     verifyNickname = (nickname) => {
         const length = nickname.length;
         if (length > 8 || length === 0) return false;

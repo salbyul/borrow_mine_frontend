@@ -7,9 +7,8 @@ function SmallBorrowList() {
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         axios
-            .get('http://localhost:8080/borrow/small_list')
+            .get('/borrow/small_list')
             .then((response) => {
-                console.log(response);
                 setPostList(response.data.borrowPosts);
             })
             .catch((error) => {
