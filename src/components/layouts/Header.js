@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
+import { useLocation } from 'react-router-dom';
 
 function Header() {
     const [cookies, setCookie, removeCookie] = useCookies([]);
     const [nickname, setNickname] = useState('');
+    const location = useLocation();
     useEffect(() => {
         if (cookies.SKAT) {
             axios
@@ -25,12 +27,13 @@ function Header() {
 
     return (
         <>
-            {/* TODO 헤더 화면 상단 고정? */}
+            {/* TODO 헤더 화면 상단 고정? 
+                메일 기능 추가해야 댐*/}
             <div className="mt-10 pt-3 mx-auto pr-10 bg-gray-50 pb-20">
                 <div className="flex justify-end">
                     {nickname === '' ? (
                         <a
-                            href="/login"
+                            href={`/login?re=${location.pathname}`}
                             className="px-3 py-1.5 text-xs rounded-md duration-75 hover:duration-75 hover:bg-gray-100 text-gray-700"
                         >
                             로그인

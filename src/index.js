@@ -20,7 +20,6 @@ function getCookie(cname) {
     return '';
 }
 const token = getCookie('SKAT');
-// console.log(token);
 if (token !== '' && token !== undefined && token !== null) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 }
