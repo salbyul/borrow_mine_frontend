@@ -36,6 +36,22 @@ function CommentForm({ comments, token }) {
                 console.log(error);
             });
     };
+
+    const onReportClick = (e) => {
+        if (!token) {
+            alert('로그인 후 이용이 가능합니다.');
+            window.location.href = `/login?re=${location.pathname}`;
+            return;
+        }
+        axios
+            .put(`/comment/report/${e.target.id}`)
+            .then((response) => {
+                console.log(response);
+            })
+            .then((error) => {
+                console.log(error);
+            });
+    };
     return (
         <>
             <div>
@@ -52,7 +68,12 @@ function CommentForm({ comments, token }) {
                                 <div className="text-gray-300 text-xs">
                                     {c.createdDate.substring(0, 10)}
                                 </div>
-                                <button className="text-sm text-gray-300">
+                                <button
+                                    className="text-sm text-gray-300"
+                                    type="button"
+                                    onClick={onReportClick}
+                                    id={c.id}
+                                >
                                     Report
                                 </button>
                             </div>

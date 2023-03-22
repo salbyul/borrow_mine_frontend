@@ -48,25 +48,21 @@ function JoinForm() {
     const onJoinClick = () => {
         const verify = new VerifyJoinForm();
         if (!verify.veryfiEmail(email)) {
-            alert('이메일을 제대로 입력해주세요.');
             setEmailError(true);
             return;
         }
         setEmailError(false);
         if (!verify.verifyPassword(password, passwordVerify)) {
-            alert('비밀번호를 제대로 입력해주세요.');
             setPasswordError(true);
             return;
         }
         setPasswordError(false);
         if (!verify.verifyNickname(nickname)) {
-            alert('닉네임은 8자 까지 입력이 가능합니다.');
             setNicknameError(true);
             return;
         }
         setNicknameError(false);
         if (!verify.verifyAddress(address)) {
-            alert('주소를 입력해주세요.');
             setAddressError(true);
             return;
         }
@@ -79,7 +75,7 @@ function JoinForm() {
             zipcode: zipcode,
         };
         axios
-            .post('http://localhost:8080/member/join', form)
+            .put('http://localhost:8080/member/join', form)
             .then((response) => {
                 window.location.href = '/login';
             })

@@ -33,6 +33,21 @@ function BorrowDetail() {
                 console.log(error);
             });
     }, []);
+    const onReportClick = () => {
+        if (!cookies.SKAT) {
+            alert('로그인 후 이용이 가능합니다.');
+            window.location.href = `/login?re=${location.pathname}`;
+            return;
+        }
+        axios
+            .put(`/borrow/report/${location.pathname.substring(8)}`)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
     return (
         <>
             {loading && (
@@ -63,7 +78,11 @@ function BorrowDetail() {
                                 {detail.state}
                             </span>
 
-                            <button className="text-xs text-gray-400 duration-150 hover:duration-150 hover:text-gray-500">
+                            <button
+                                className="text-xs text-gray-400 duration-150 hover:duration-150 hover:text-gray-500"
+                                type="button"
+                                onClick={onReportClick}
+                            >
                                 Report
                             </button>
                         </div>
