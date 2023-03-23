@@ -43,6 +43,7 @@ function BorrowDetail() {
             .put(`/borrow/report/${location.pathname.substring(8)}`)
             .then((response) => {
                 console.log(response);
+                alert('신고가 완료되었습니다.');
             })
             .catch((error) => {
                 console.log(error);

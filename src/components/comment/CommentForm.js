@@ -47,6 +47,7 @@ function CommentForm({ comments, token }) {
             .put(`/comment/report/${e.target.id}`)
             .then((response) => {
                 console.log(response);
+                alert('신고가 완료되었습니다.');
             })
             .then((error) => {
                 console.log(error);
