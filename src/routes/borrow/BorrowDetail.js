@@ -24,7 +24,6 @@ function BorrowDetail() {
             .get(`/borrow/${location.pathname.substring(8)}`)
             .then((response) => {
                 setDetail(response.data.borrowDetail);
-                console.log(response.data.borrowDetail);
                 if (cookies.SKAT) {
                     setToken(cookies.SKAT);
                 }
@@ -42,11 +41,12 @@ function BorrowDetail() {
         axios
             .put(`/borrow/report/${location.pathname.substring(8)}`)
             .then((response) => {
-                console.log(response);
                 alert('신고가 완료되었습니다.');
             })
             .catch((error) => {
-                console.log(error);
+                if (error.response.data.code === 111) {
+                    alert('신고는 한번만 가능합니다.');
+                }
             });
     };
     return (

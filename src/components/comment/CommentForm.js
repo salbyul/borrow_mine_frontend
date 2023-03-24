@@ -29,12 +29,9 @@ function CommentForm({ comments, token }) {
         axios
             .put('/comment/save', comment)
             .then((response) => {
-                console.log(response);
                 window.location.href = `${location.pathname}?#form`;
             })
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch((error) => {});
     };
 
     const onReportClick = (e) => {
@@ -46,11 +43,12 @@ function CommentForm({ comments, token }) {
         axios
             .put(`/comment/report/${e.target.id}`)
             .then((response) => {
-                console.log(response);
                 alert('신고가 완료되었습니다.');
             })
-            .then((error) => {
-                console.log(error);
+            .catch((error) => {
+                if (error.response.data.code === 111) {
+                    alert('신고는 한번만 가능합니다.');
+                }
             });
     };
     return (

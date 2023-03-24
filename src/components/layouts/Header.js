@@ -8,7 +8,6 @@ function Header() {
     const [nickname, setNickname] = useState('');
     const location = useLocation();
     useEffect(() => {
-        console.log(cookies.SKAT);
         if (cookies.SKAT) {
             axios
                 .get('/header')
