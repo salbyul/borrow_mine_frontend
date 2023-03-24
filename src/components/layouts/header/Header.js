@@ -1,7 +1,10 @@
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useLocation } from 'react-router-dom';
+import Dropdown from '../header/Dropdown';
 
 function Header() {
     const [cookies, setCookie, removeCookie] = useCookies([]);
@@ -20,9 +23,8 @@ function Header() {
         }
     }, []);
 
-    const onLogoutClick = () => {
-        removeCookie('SKAT');
-        window.location.href = '/';
+    const onNicknameClick = () => {
+        console.log('im clicked');
     };
 
     return (
@@ -39,15 +41,11 @@ function Header() {
                             로그인
                         </a>
                     ) : (
-                        <div>
-                            {nickname}
-                            <button
-                                type="button"
-                                onClick={onLogoutClick}
-                                className="px-3 py-1.5 text-xs rounded-md duration-75 hover:duration-75 hover:bg-gray-100 text-gray-700"
-                            >
-                                로그아웃
-                            </button>
+                        <div className="flex items-center">
+                            <a href="/chat">
+                                <FontAwesomeIcon icon={faEnvelope} />
+                            </a>
+                            <Dropdown nickname={nickname} />
                         </div>
                     )}
                 </div>

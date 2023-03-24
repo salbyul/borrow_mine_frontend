@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Header from './components/layouts/Header';
+import Header from './components/layouts/header/Header';
 import Home from './routes/home/Home';
 import Login from './routes/home/Login';
-import BorrowList from './routes/BorrowList';
+import Borrow from './routes/Borrow';
 import Join from './routes/home/Join';
 import BorrowDetail from './routes/borrow/BorrowDetail';
+import Chat from './routes/Chat';
 
 function App() {
     return (
@@ -13,13 +14,15 @@ function App() {
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    {/* TODO  비밀번호 찾기*/}
+                    {/* TODO 비밀번호 찾기*/}
                     <Route path="/login" element={<Login />} />
 
                     <Route path="/join" element={<Join />} />
-                    {/* TODO */}
-                    <Route path="/borrow" element={<BorrowList />} />
+                    {/* TODO 전부*/}
+                    <Route path="/borrow" element={<Borrow />} />
+                    {/* TODO 요청 */}
                     <Route path="/borrow/:id" element={<BorrowDetail />} />
+                    <Route path="/chat" element={<Chat />} />
                 </Routes>
             </BrowserRouter>
         </>

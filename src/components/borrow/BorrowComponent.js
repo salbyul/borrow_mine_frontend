@@ -8,9 +8,11 @@ function BorrowComponent({ post }) {
                         alt={post.imageDtoList[0].imageName}
                         className="mx-auto"
                     />
-                    <div className="text-xl my-1">{post.title}</div>
-                    <div className="text-lg">{post.nickname}</div>
-                    <div className="text-md">
+                    <div className="text-xl my-1 text-gray-700">
+                        {post.title}
+                    </div>
+                    <div className="text-lg text-gray-700">{post.nickname}</div>
+                    <div className="text-md text-gray-300">
                         {post.createdDate.substring(0, 10)}
                     </div>
                 </a>
