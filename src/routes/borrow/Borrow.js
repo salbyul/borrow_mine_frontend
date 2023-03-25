@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import BorrowList from '../components/borrow/BorrowList';
+import BorrowList from '../../components/borrow/BorrowList';
 
 function Borrow() {
     const [postList, setPostList] = useState([]);

@@ -2,9 +2,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/layouts/header/Header';
 import Home from './routes/home/Home';
 import Login from './routes/home/Login';
-import Borrow from './routes/Borrow';
+import Borrow from './routes/borrow/Borrow';
 import Join from './routes/home/Join';
 import BorrowDetail from './routes/borrow/BorrowDetail';
+import BorrowCreate from './routes/borrow/BorrowCreate';
 import Chat from './routes/Chat';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                     <Route path="/borrow" element={<Borrow />} />
                     {/* TODO 요청 */}
                     <Route path="/borrow/:id" element={<BorrowDetail />} />
+                    <Route path="/borrow/create" element={<BorrowCreate />} />
                     <Route path="/chat" element={<Chat />} />
                 </Routes>
             </BrowserRouter>

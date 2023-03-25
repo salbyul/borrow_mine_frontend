@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
-import VerifyJoinForm from './VerifyJoinForm';
+import JoinValidator from './JoinValidator';
 
 function JoinForm() {
     const [email, setEmail] = useState('');
@@ -46,23 +46,23 @@ function JoinForm() {
     };
 
     const onJoinClick = () => {
-        const verify = new VerifyJoinForm();
-        if (!verify.veryfiEmail(email)) {
+        const validator = new JoinValidator();
+        if (!validator.veryfiEmail(email)) {
             setEmailError(true);
             return;
         }
         setEmailError(false);
-        if (!verify.verifyPassword(password, passwordVerify)) {
+        if (!validator.verifyPassword(password, passwordVerify)) {
             setPasswordError(true);
             return;
         }
         setPasswordError(false);
-        if (!verify.verifyNickname(nickname)) {
+        if (!validator.verifyNickname(nickname)) {
             setNicknameError(true);
             return;
         }
         setNicknameError(false);
-        if (!verify.verifyAddress(address)) {
+        if (!validator.verifyAddress(address)) {
             setAddressError(true);
             return;
         }
