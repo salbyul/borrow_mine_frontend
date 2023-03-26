@@ -12,14 +12,9 @@ function BorrowCreate() {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [content, setContent] = useState('');
+    const [recommend, setRecommend] = useState([]);
+    const [isFocus, setIsFocus] = useState(false);
 
-    const onTitleChange = (e) => {
-        setTitle(e.target.value);
-    };
-    const onPriceChange = (e) => {
-        setPrice(e.target.value);
-    };
-    // TODO 추천리스트
     const onProductChange = (e) => {
         const value = e.target.value;
         if (value.length > 0) {
@@ -27,6 +22,7 @@ function BorrowCreate() {
                 .get(`/borrow/product/${value}`)
                 .then((response) => {
                     console.log(response.data);
+                    setRecommend(response.data.productNames);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -49,15 +45,6 @@ function BorrowCreate() {
         const list = [...imageList];
         list.push(e.target.files[0]);
         setImageList(list);
-    };
-    const onStartDateChange = (e) => {
-        setStartDate(e.target.value);
-    };
-    const onEndDateChange = (e) => {
-        setEndDate(e.target.value);
-    };
-    const onContentChange = (e) => {
-        setContent(e.target.value);
     };
 
     const onImageClick = (e) => {
@@ -114,7 +101,7 @@ function BorrowCreate() {
                         className="w-full py-1 pl-1 text-md text-gray-700"
                         placeholder="제목을 입력하세요."
                         value={title}
-                        onChange={onTitleChange}
+                        onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
                 <div className="border-y my-3 flex">
@@ -125,7 +112,7 @@ function BorrowCreate() {
                             className="text-gray-700 text-sm pl-1"
                             placeholder="가격"
                             value={price}
-                            onChange={onPriceChange}
+                            onChange={(e) => setPrice(e.target.value)}
                         />
                         <label
                             htmlFor="price"
@@ -135,13 +122,37 @@ function BorrowCreate() {
                         </label>
                     </div>
                     <div className="w-5/12 border-r">
-                        <input
-                            type="text"
-                            className="text-gray-700 text-sm pl-1 w-full"
-                            placeholder="제품명"
-                            value={product}
-                            onChange={onProductChange}
-                        />
+                        <div>
+                            <input
+                                type="text"
+                                className="text-gray-700 text-sm pl-1 w-full"
+                                placeholder="제품명"
+                                value={product}
+                                onChange={onProductChange}
+                                onFocus={() => setIsFocus(true)}
+                                onBlur={(e) => {
+                                    if (e.relatedTarget === null) {
+                                        setIsFocus(false);
+                                        return;
+                                    }
+                                    setProduct(e.relatedTarget.value);
+                                    setIsFocus(false);
+                                }}
+                            />
+                        </div>
+                        {isFocus && recommend.length > 0 && (
+                            <div className="absolute shadow-lg w-2/12 rounded-md bg-gray-100">
+                                {recommend.map((word) => (
+                                    <button
+                                        key={word}
+                                        className="pl-1 w-full text-start border-b text-gray-700 text-sm duration-150 hover:duration-150 hover:bg-gray-200"
+                                        value={word}
+                                    >
+                                        {word}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
                     </div>
                     <div className="mx-auto w-4/12 text-center">
                         <label
@@ -174,7 +185,7 @@ function BorrowCreate() {
                             id="startDate"
                             className="text-gray-700 text-sm mx-auto"
                             value={startDate}
-                            onChange={onStartDateChange}
+                            onChange={(e) => setStartDate(e.target.value)}
                         />
                     </div>
                     <div className="w-1/2 pl-1 flex">
@@ -191,7 +202,7 @@ function BorrowCreate() {
                             id="endDate"
                             className="text-gray-700 text-sm mx-auto"
                             value={endDate}
-                            onChange={onEndDateChange}
+                            onChange={(e) => setEndDate(e.target.value)}
                         />
                     </div>
                 </div>
@@ -223,7 +234,7 @@ function BorrowCreate() {
                         className="resize-none w-full h-full pl-1 text-gray-700"
                         placeholder="내용을 입력하세요."
                         value={content}
-                        onChange={onContentChange}
+                        onChange={(e) => setContent(e.target.value)}
                     ></textarea>
                 </div>
                 <div className="w-full text-center my-3">

@@ -11,7 +11,7 @@ function BorrowComponent({ post }) {
                     <div className="text-xl my-1 text-gray-700">
                         {post.title}
                     </div>
-                    <div className="text-lg text-gray-700">{post.nickname}</div>
+                    <div className="text-sm text-gray-700">{post.nickname}</div>
                     <div className="text-md text-gray-300">
                         {post.createdDate.substring(0, 10)}
                     </div>
