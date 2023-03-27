@@ -19,7 +19,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
 
                     <Route path="/join" element={<Join />} />
-                    {/* TODO 전부*/}
+                    {/* TODO paging */}
                     <Route path="/borrow" element={<Borrow />} />
                     {/* TODO 요청 */}
                     <Route path="/borrow/:id" element={<BorrowDetail />} />

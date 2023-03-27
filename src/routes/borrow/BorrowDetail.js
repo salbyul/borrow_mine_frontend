@@ -5,6 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { useLocation } from 'react-router-dom';
 import CommentForm from '../../components/comment/CommentForm';
 import { useCookies } from 'react-cookie';
+import BorrowDropdown from '../../components/borrow/BorrowDropdown';
 
 function BorrowDetail() {
     const [detail, setDetail] = useState({});
@@ -92,11 +93,9 @@ function BorrowDetail() {
                     {/* content */}
                     <div>
                         <div className="text-start">
-                            <button className="text-sm text-gray-700">
-                                {detail.nickname}
-                            </button>
+                            <BorrowDropdown nickname={detail.nickname} />
                         </div>
-                        <div className="mx-auto max-w-xl">
+                        <div className="mx-auto h-fit">
                             <Carousel
                                 showThumbs={false}
                                 showStatus={false}
@@ -105,10 +104,14 @@ function BorrowDetail() {
                             >
                                 {detail.imageDtoList.map((i) => {
                                     return (
-                                        <div key={i.imageName}>
+                                        <div
+                                            key={i.imageName}
+                                            className="relative w-full h-0 pb-96"
+                                        >
                                             <img
                                                 src={`data:image/jpeg;base64,${i.image}`}
                                                 alt={i.imageName}
+                                                className="absolute top-0 left-0 w-full h-full"
                                             />
                                         </div>
                                     );

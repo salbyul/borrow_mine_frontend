@@ -219,8 +219,15 @@ function BorrowCreate() {
                             >
                                 {imageSrcList.map((i) => {
                                     return (
-                                        <div key={i}>
-                                            <img src={i} alt={i} />
+                                        <div
+                                            key={i}
+                                            className="relative w-full h-0 pb-96"
+                                        >
+                                            <img
+                                                src={i}
+                                                alt={i}
+                                                className="absolute top-0 left-0 w-full h-full"
+                                            />
                                         </div>
                                     );
                                 })}

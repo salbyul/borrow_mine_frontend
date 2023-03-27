@@ -8,7 +8,7 @@ function BorrowComponent({ post }) {
                         alt={post.imageDtoList[0].imageName}
                         className="mx-auto"
                     />
-                    <div className="text-xl my-1 text-gray-700">
+                    <div className="text-base my-1 text-gray-700 font-bold">
                         {post.title}
                     </div>
                     <div className="text-sm text-gray-700">{post.nickname}</div>

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useLocation } from 'react-router-dom';
-import Dropdown from '../header/Dropdown';
+import HeaderDropdown from './HeaderDropdown';
 
 function Header() {
     const [cookies, setCookie, removeCookie] = useCookies([]);
@@ -16,16 +16,14 @@ function Header() {
                 .get('/header')
                 .then((response) => {
                     setNickname(response.data);
+                    setCookie('nickname', response.data);
                 })
                 .catch((error) => {
                     removeCookie('SKAT');
+                    removeCookie('nickname');
                 });
         }
     }, []);
-
-    const onNicknameClick = () => {
-        console.log('im clicked');
-    };
 
     return (
         <>
@@ -45,7 +43,7 @@ function Header() {
                             <a href="/chat">
                                 <FontAwesomeIcon icon={faEnvelope} />
                             </a>
-                            <Dropdown nickname={nickname} />
+                            <HeaderDropdown nickname={nickname} />
                         </div>
                     )}
                 </div>
