@@ -25,6 +25,7 @@ function App() {
                     <Route path="/borrow/:id" element={<BorrowDetail />} />
                     <Route path="/borrow/create" element={<BorrowCreate />} />
                     <Route path="/chat" element={<Chat />} />
+                    <Route path="/chat/:nickname" element={<Chat />} />
                 </Routes>
             </BrowserRouter>
         </>

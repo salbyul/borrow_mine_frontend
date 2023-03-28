@@ -12,7 +12,13 @@ export default function BorrowDropdown({ nickname }) {
     const [cookies, setCookie, removeCookie] = useCookies([]);
     const location = useLocation();
 
-    const onChatClick = () => {};
+    const onChatClick = () => {
+        if (cookies.nickname === nickname) {
+            alert('자기 자신과 채팅을 할 수는 없습니다.');
+            return;
+        }
+        window.location.href = `/chat?target=${nickname}`;
+    };
     const onDenyClick = () => {
         if (!cookies.SKAT) {
             alert('로그인 후 이용이 가능합니다.');

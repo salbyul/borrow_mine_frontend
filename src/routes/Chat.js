@@ -1,23 +1,91 @@
-import { useEffect } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
+import ChattingList from '../components/chat/ChattingList';
+import ChattingRoom from '../components/chat/ChattingRoom';
 
 function Chat() {
+    const [target, setTarget] = useState('');
+    const [targetList, setTargetList] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [cookies, setCookie, removeCookie] = useCookies([]);
     const location = useLocation();
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const targetChange = (target) => {
+        setTarget(target);
+    };
+
+    useEffect(() => {
+        if (targetList.length !== 0) {
+            setLoading(true);
+        }
+    }, [targetList]);
     useEffect(() => {
         if (!cookies.SKAT) {
             alert('로그인 후 이용가능합니다.');
             window.location.href = `/login?re=${location.pathname}`;
             return;
         }
+
+        axios
+            .get('/chat/chat-room')
+            .then((response) => {
+                const list = [...response.data.chatRoomList];
+                const chatRooms = response.data.chatRoomList;
+                const preTarget = searchParams.get('target');
+                if (preTarget !== null) {
+                    let flag = false;
+                    for (let i = 0; i < chatRooms.length; i++) {
+                        const room = chatRooms.at(i);
+                        if (room === preTarget) {
+                            flag = true;
+                            break;
+                        }
+                    }
+                    console.log('hihi');
+                    if (flag) {
+                        setTarget(preTarget);
+                    } else {
+                        axios
+                            .put(`/chat/chat-room/create?to=${preTarget}`)
+                            .then((response) => {
+                                console.log(response);
+                                setTarget(preTarget);
+                                list.push(preTarget);
+                                setTargetList(list);
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                                setTargetList(list);
+                            });
+                    }
+                    setTargetList(list);
+                } else {
+                    setTargetList(list);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }, []);
     return (
         <>
-            <div className="flex mx-auto w-7/12">
-                <div className="w-4/12 bg-red-100 border">list</div>
-                <div className="w-8/12 bg-lime-100 border">chat</div>
-            </div>
+            {loading && (
+                <div className="flex mx-auto w-7/12 h-screen justify-center">
+                    <div className="w-2/12 border h-3/6">
+                        <ChattingList
+                            list={targetList}
+                            target={target}
+                            targetChange={targetChange}
+                        />
+                    </div>
+                    <div className="w-7/12 border h-3/6">
+                        <ChattingRoom target={target} />
+                    </div>
+                </div>
+            )}
         </>
     );
 }
