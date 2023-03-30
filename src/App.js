@@ -7,6 +7,7 @@ import Join from './routes/home/Join';
 import BorrowDetail from './routes/borrow/BorrowDetail';
 import BorrowCreate from './routes/borrow/BorrowCreate';
 import Chat from './routes/Chat';
+import Profile from './routes/Profile';
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/borrow/create" element={<BorrowCreate />} />
                     <Route path="/chat" element={<Chat />} />
                     <Route path="/chat/:nickname" element={<Chat />} />
+                    <Route path="/profile/*" element={<Profile />} />
                 </Routes>
             </BrowserRouter>
         </>
