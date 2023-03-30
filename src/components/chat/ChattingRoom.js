@@ -29,7 +29,6 @@ function ChattingRoom({ target }) {
             axios
                 .get(`/chat/log?to=${target}`)
                 .then((response) => {
-                    console.log(response);
                     const list = [...response.data.chatList];
                     let chatList = [];
                     list.forEach((chat) => {
@@ -58,6 +57,8 @@ function ChattingRoom({ target }) {
                         chatList.push(data);
                     });
                     setMsgList(chatList);
+                    webSocketLogin();
+                    setLog(true);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -65,9 +66,7 @@ function ChattingRoom({ target }) {
         }
     }, [target]);
 
-    useEffect(() => {
-        console.log(msgList);
-    }, [msgList]);
+    useEffect(() => {}, [msgList]);
 
     useEffect(() => {
         if (imageSrc !== '') {
@@ -93,14 +92,16 @@ function ChattingRoom({ target }) {
             `ws://localhost:8080/chat/room/${cookies.nickname}?t=${cookies.SKAT}`
         );
         ws.current.onmessage = (message) => {
+            console.log(message);
             const dataSet = JSON.parse(message.data);
+            console.log(dataSet);
             setSocketData(dataSet);
         };
     });
 
     const send = useCallback((type) => {
         if (!log) {
-            webSocketLogin();
+            // webSocketLogin();
             setLog(true);
         }
 

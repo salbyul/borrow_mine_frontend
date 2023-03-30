@@ -32,19 +32,21 @@ function Chat() {
         axios
             .get('/chat/chat-room')
             .then((response) => {
-                const list = [...response.data.chatRoomList];
                 const chatRooms = response.data.chatRoomList;
+                const list = [...chatRooms];
                 const preTarget = searchParams.get('target');
                 if (preTarget !== null) {
                     let flag = false;
                     for (let i = 0; i < chatRooms.length; i++) {
                         const room = chatRooms.at(i);
+                        console.log(room);
                         if (room === preTarget) {
                             flag = true;
                             break;
                         }
                     }
                     console.log('hihi');
+                    console.log('flag: ' + flag);
                     if (flag) {
                         setTarget(preTarget);
                     } else {
@@ -61,7 +63,6 @@ function Chat() {
                                 setTargetList(list);
                             });
                     }
-                    setTargetList(list);
                 } else {
                     setTargetList(list);
                 }
@@ -72,20 +73,20 @@ function Chat() {
     }, []);
     return (
         <>
-            {loading && (
-                <div className="flex mx-auto w-7/12 h-screen justify-center">
-                    <div className="w-2/12 border h-3/6">
+            <div className="flex mx-auto w-7/12 h-screen justify-center">
+                <div className="w-2/12 border h-3/6">
+                    {loading && (
                         <ChattingList
                             list={targetList}
                             target={target}
                             targetChange={targetChange}
                         />
-                    </div>
-                    <div className="w-7/12 border h-3/6">
-                        <ChattingRoom target={target} />
-                    </div>
+                    )}
                 </div>
-            )}
+                <div className="w-7/12 border h-3/6">
+                    {loading && <ChattingRoom target={target} />}
+                </div>
+            </div>
         </>
     );
 }
