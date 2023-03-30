@@ -9,16 +9,26 @@ import ProfileSection from '../components/profile/ProfileSection';
 import ProfileSentRequest from '../components/profile/ProfileSentRequest';
 
 function Profile() {
-    const [cookies, setCookie, removeCookie] = useCookies();
     const [path, setPath] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [cookies, setCookie, removeCookie] = useCookies();
     const location = useLocation();
+    useEffect(() => {
+        if (path !== '') {
+            setLoading(true);
+        }
+    }, [path]);
     useEffect(() => {
         if (!cookies.SKAT) {
             alert('로그인 후 이용가능합니다.');
             window.location.href = `/login?re=${location.pathname}`;
             return;
         }
-        setPath(location.pathname.substring(9));
+        if (location.pathname.substring(9) !== '') {
+            setPath(location.pathname.substring(9));
+        } else {
+            setLoading(true);
+        }
     }, []);
     useEffect(() => {
         console.log(path);
@@ -28,18 +38,25 @@ function Profile() {
     };
     return (
         <>
-            <div className="flex w-7/12 mx-auto justify-center border">
-                <div className="border-r w-3/12 text-center">
-                    <ProfileSection changedPath={changedPath} />
+            {loading && (
+                <div className="flex w-7/12 mx-auto justify-center border">
+                    <div className="border-r w-3/12 text-center">
+                        <ProfileSection
+                            changedPath={changedPath}
+                            initPath={path}
+                        />
+                    </div>
+                    <div className="w-9/12 text-center">
+                        {path === '' && <ProfileHome />}
+                        {path === 'borrow/wrote' && <ProfileBorrowWrote />}
+                        {path === 'request/received' && (
+                            <ProfileReceivedRequest />
+                        )}
+                        {path === 'request/sent' && <ProfileSentRequest />}
+                        {path === 'deny/list' && <ProfileDenyList />}
+                    </div>
                 </div>
-                <div className="w-9/12 text-center">
-                    {path === '' && <ProfileHome />}
-                    {path === 'borrow/wrote' && <ProfileBorrowWrote />}
-                    {path === 'request/received' && <ProfileReceivedRequest />}
-                    {path === 'request/sent' && <ProfileSentRequest />}
-                    {path === 'deny/list' && <ProfileDenyList />}
-                </div>
-            </div>
+            )}
         </>
     );
 }

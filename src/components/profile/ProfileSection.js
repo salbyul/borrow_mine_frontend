@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function ProfileSection({ changedPath }) {
+function ProfileSection({ initPath, changedPath }) {
     const [path, setPath] = useState('');
+    useEffect(() => {
+        setPath(initPath);
+    }, []);
     useEffect(() => {
         changedPath(path);
     }, [path]);

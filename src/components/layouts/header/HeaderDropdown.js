@@ -36,7 +36,7 @@ export default function Dropdown({ nickname }) {
                         <Menu.Item>
                             {({ active }) => (
                                 <a
-                                    href="/chat"
+                                    href="/profile"
                                     className={classNames(
                                         active
                                             ? 'bg-gray-100 text-gray-900'
@@ -44,10 +44,11 @@ export default function Dropdown({ nickname }) {
                                         'block px-4 py-2 text-sm'
                                     )}
                                 >
-                                    채팅
+                                    내 정보
                                 </a>
                             )}
                         </Menu.Item>
+
                         <Menu.Item>
                             {({ active }) => (
                                 <a
@@ -60,21 +61,6 @@ export default function Dropdown({ nickname }) {
                                     )}
                                 >
                                     글쓰기
-                                </a>
-                            )}
-                        </Menu.Item>
-                        <Menu.Item>
-                            {({ active }) => (
-                                <a
-                                    href="/profile"
-                                    className={classNames(
-                                        active
-                                            ? 'bg-gray-100 text-gray-900'
-                                            : 'text-gray-700',
-                                        'block px-4 py-2 text-sm'
-                                    )}
-                                >
-                                    내 정보
                                 </a>
                             )}
                         </Menu.Item>
