@@ -14,7 +14,7 @@ function ProfileSection({ initPath, changedPath }) {
             <div>
                 <Link to="/profile">
                     <button
-                        className={`my-2 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
+                        className={`my-5 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
                             path === '' && 'font-semibold text-gray-700'
                         }`}
                         onClick={() => setPath('')}
@@ -22,9 +22,20 @@ function ProfileSection({ initPath, changedPath }) {
                         내 정보
                     </button>
                 </Link>
+                <Link to="/profile/password">
+                    <button
+                        className={`my-5 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
+                            path === 'borrow/wrote' &&
+                            'font-semibold text-gray-700'
+                        }`}
+                        onClick={() => setPath('password')}
+                    >
+                        비밀번호 변경
+                    </button>
+                </Link>
                 <Link to="/profile/borrow/wrote">
                     <button
-                        className={`my-2 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
+                        className={`my-5 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
                             path === 'borrow/wrote' &&
                             'font-semibold text-gray-700'
                         }`}
@@ -35,7 +46,7 @@ function ProfileSection({ initPath, changedPath }) {
                 </Link>
                 <Link to="/profile/request/received">
                     <button
-                        className={`my-2 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
+                        className={`my-5 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
                             path === 'request/received' &&
                             'font-semibold text-gray-700'
                         }`}
@@ -46,7 +57,7 @@ function ProfileSection({ initPath, changedPath }) {
                 </Link>
                 <Link to="/profile/request/sent">
                     <button
-                        className={`my-2 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
+                        className={`my-5 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
                             path === 'request/sent' &&
                             'font-semibold text-gray-700'
                         }`}
@@ -57,7 +68,7 @@ function ProfileSection({ initPath, changedPath }) {
                 </Link>
                 <Link to="/profile/deny/list">
                     <button
-                        className={`my-2 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
+                        className={`my-5 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
                             path === 'deny/list' &&
                             'font-semibold text-gray-700'
                         }`}

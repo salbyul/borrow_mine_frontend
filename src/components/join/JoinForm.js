@@ -9,7 +9,7 @@ function JoinForm() {
     const [passwordVerify, setPasswordVerify] = useState('');
     const [nickname, setNickname] = useState('');
     const [zipcode, setZipcode] = useState('');
-    const [address, setAddress] = useState('');
+    const [street, setStreet] = useState('');
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [nicknameError, setNicknameError] = useState(false);
@@ -29,19 +29,13 @@ function JoinForm() {
     const onNicknameChange = (e) => {
         setNickname(e.target.value);
     };
-    const onZipcodeChange = (e) => {
-        setZipcode(e.target.value);
-    };
-    const onAddressChange = (e) => {
-        setAddress(e.target.value);
-    };
 
     const onAddressClick = () => {
         open({ onComplete: addressSetting });
     };
 
     const addressSetting = (data) => {
-        setAddress(data.address);
+        setStreet(data.address);
         setZipcode(data.zonecode);
     };
 
@@ -62,7 +56,7 @@ function JoinForm() {
             return;
         }
         setNicknameError(false);
-        if (!validator.verifyAddress(address)) {
+        if (!validator.verifyAddress(street)) {
             setAddressError(true);
             return;
         }
@@ -71,8 +65,7 @@ function JoinForm() {
             email: email,
             password: password,
             nickname: nickname,
-            address: address,
-            zipcode: zipcode,
+            address: { street, zipcode },
         };
         axios
             .put('http://localhost:8080/member/join', form)
@@ -169,7 +162,6 @@ function JoinForm() {
                         placeholder="우편번호"
                         disabled
                         value={zipcode}
-                        onChange={onZipcodeChange}
                     />
                     <button
                         type="button"
@@ -185,8 +177,7 @@ function JoinForm() {
                         }`}
                         placeholder="주소"
                         disabled
-                        value={address}
-                        onChange={onAddressChange}
+                        value={street}
                     />
                 </div>
                 <div className="flex justify-evenly">

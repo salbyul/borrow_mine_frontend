@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import ProfileBorrowWrote from '../components/profile/ProfileBorrowWrote';
 import ProfileDenyList from '../components/profile/ProfileDenyList';
 import ProfileHome from '../components/profile/ProfileHome';
+import ProfilePasswordChange from '../components/profile/ProfilePasswordChange';
 import ProfileReceivedRequest from '../components/profile/ProfileReceivedRequest';
 import ProfileSection from '../components/profile/ProfileSection';
 import ProfileSentRequest from '../components/profile/ProfileSentRequest';
@@ -39,8 +40,8 @@ function Profile() {
     return (
         <>
             {loading && (
-                <div className="flex w-7/12 mx-auto justify-center border">
-                    <div className="border-r w-3/12 text-center">
+                <div className="flex w-7/12 mx-auto justify-center border rounded-md">
+                    <div className="border-r w-3/12 text-center py-10">
                         <ProfileSection
                             changedPath={changedPath}
                             initPath={path}
@@ -48,6 +49,7 @@ function Profile() {
                     </div>
                     <div className="w-9/12 text-center">
                         {path === '' && <ProfileHome />}
+                        {path === 'password' && <ProfilePasswordChange />}
                         {path === 'borrow/wrote' && <ProfileBorrowWrote />}
                         {path === 'request/received' && (
                             <ProfileReceivedRequest />

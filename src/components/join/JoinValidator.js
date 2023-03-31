@@ -1,4 +1,4 @@
-class VerifyJoinForm {
+class JoinValidator {
     verifyPassword = (password, passwordVerify) => {
         if (password === '' || password !== passwordVerify) {
             alert('비밀번호를 제대로 입력해주세요.');
@@ -35,4 +35,4 @@ class VerifyJoinForm {
         return true;
     };
 }
-export default VerifyJoinForm;
+export default JoinValidator;
