@@ -68,7 +68,7 @@ function JoinForm() {
             address: { street, zipcode },
         };
         axios
-            .put('http://localhost:8080/member/join', form)
+            .put('/member/join', form)
             .then((response) => {
                 window.location.href = '/login';
             })
