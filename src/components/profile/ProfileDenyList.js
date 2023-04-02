@@ -33,10 +33,11 @@ function ProfileDenyList() {
     return (
         <>
             <div className="mt-5">
+                <h1 className="text-xl mb-7 text-gray-700">차단 목록</h1>
                 {list.map((d, idx) => {
                     return (
                         <div className="flex justify-center py-1" key={idx}>
-                            <span className="text-sm text-gray-700 w-2/12 px-3 border mr-2 hover:cursor-default">
+                            <span className="text-sm text-gray-700 w-2/12 px-3 mr-2 hover:cursor-default">
                                 {d.deny}
                             </span>
                             <button

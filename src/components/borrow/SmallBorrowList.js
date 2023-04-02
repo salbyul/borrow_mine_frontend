@@ -9,6 +9,7 @@ function SmallBorrowList() {
         axios
             .get('/borrow/small_list')
             .then((response) => {
+                console.log(response);
                 setPostList(response.data.borrowPosts);
             })
             .catch((error) => {

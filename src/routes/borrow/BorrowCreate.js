@@ -21,7 +21,6 @@ function BorrowCreate() {
             axios
                 .get(`/borrow/product/${value}`)
                 .then((response) => {
-                    console.log(response.data);
                     setRecommend(response.data.productNames);
                 })
                 .catch((error) => {
@@ -131,11 +130,14 @@ function BorrowCreate() {
                                 onChange={onProductChange}
                                 onFocus={() => setIsFocus(true)}
                                 onBlur={(e) => {
-                                    if (e.relatedTarget === null) {
+                                    if (
+                                        e.relatedTarget &&
+                                        e.relatedTarget.id === 'recommend'
+                                    ) {
+                                        setProduct(e.relatedTarget.value);
                                         setIsFocus(false);
                                         return;
                                     }
-                                    setProduct(e.relatedTarget.value);
                                     setIsFocus(false);
                                 }}
                             />
@@ -144,6 +146,7 @@ function BorrowCreate() {
                             <div className="absolute shadow-lg w-2/12 rounded-md bg-gray-100">
                                 {recommend.map((word) => (
                                     <button
+                                        id="recommend"
                                         key={word}
                                         className="pl-1 w-full text-start border-b text-gray-700 text-sm duration-150 hover:duration-150 hover:bg-gray-200"
                                         value={word}

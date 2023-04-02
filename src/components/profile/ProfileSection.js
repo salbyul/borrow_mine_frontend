@@ -25,8 +25,7 @@ function ProfileSection({ initPath, changedPath }) {
                 <Link to="/profile/password">
                     <button
                         className={`my-5 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
-                            path === 'borrow/wrote' &&
-                            'font-semibold text-gray-700'
+                            path === 'password' && 'font-semibold text-gray-700'
                         }`}
                         onClick={() => setPath('password')}
                     >
