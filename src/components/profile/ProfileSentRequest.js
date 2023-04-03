@@ -6,7 +6,7 @@ function ProfileSentRequest() {
 
     useEffect(() => {
         axios
-            .get('/borrow/request/send')
+            .get('/borrow/request/sent')
             .then((response) => {
                 setList(response.data.requestDtoList);
             })
@@ -14,10 +14,6 @@ function ProfileSentRequest() {
                 console.log(error);
             });
     }, []);
-
-    const onBtnClick = (id) => {
-        window.location.href = `/borrow/${id}`;
-    };
 
     return (
         <>
@@ -59,7 +55,7 @@ function ProfileSentRequest() {
                                         <button
                                             className="px-3 bg-gray-100 rounded-md"
                                             onClick={() =>
-                                                onBtnClick(c.borrowPostId)
+                                                (window.location.href = `/borrow/${c.borrowPostId}`)
                                             }
                                         >
                                             Click
