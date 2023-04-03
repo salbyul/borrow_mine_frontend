@@ -54,7 +54,7 @@ function BorrowDetail() {
     const onRequestClick = () => {
         const id = location.pathname.substring(8);
         axios
-            .put(`/borrow/request/${id}`)
+            .put(`/borrow/request?id=${id}`)
             .then((response) => {
                 alert('요청이 완료되었습니다.');
             })
@@ -62,6 +62,8 @@ function BorrowDetail() {
                 const code = error.response.data.code;
                 if (code === 111) {
                     alert('이미 요청이 되었습니다.');
+                } else if (code === 222) {
+                    alert('자신의 게시물에 요청을 할 수 없습니다.');
                 }
             });
     };
