@@ -54,6 +54,17 @@ function ProfileSection({ initPath, changedPath }) {
                         받은 요청
                     </button>
                 </Link>
+                <Link to="/profile/borrow/history">
+                    <button
+                        className={`my-5 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
+                            path === 'borrow/history' &&
+                            'font-semibold text-gray-700'
+                        }`}
+                        onClick={() => setPath('borrow/history')}
+                    >
+                        거래
+                    </button>
+                </Link>
                 <Link to="/profile/request/sent">
                     <button
                         className={`my-5 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${

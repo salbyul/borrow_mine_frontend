@@ -8,6 +8,7 @@ import ProfilePasswordChange from '../components/profile/ProfilePasswordChange';
 import ProfileReceivedRequest from '../components/profile/ProfileReceivedRequest';
 import ProfileSection from '../components/profile/ProfileSection';
 import ProfileSentRequest from '../components/profile/ProfileSentRequest';
+import ProfileBorrowHistory from '../components/profile/ProfileBorrowHistory';
 
 function Profile() {
     const [path, setPath] = useState('');
@@ -51,6 +52,7 @@ function Profile() {
                         {path === '' && <ProfileHome />}
                         {path === 'password' && <ProfilePasswordChange />}
                         {path === 'borrow/wrote' && <ProfileBorrowWrote />}
+                        {path === 'borrow/history' && <ProfileBorrowHistory />}
                         {path === 'request/received' && (
                             <ProfileReceivedRequest />
                         )}

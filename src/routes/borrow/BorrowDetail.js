@@ -50,6 +50,22 @@ function BorrowDetail() {
                 }
             });
     };
+
+    const onRequestClick = () => {
+        const id = location.pathname.substring(8);
+        axios
+            .put(`/borrow/request/${id}`)
+            .then((response) => {
+                alert('요청이 완료되었습니다.');
+            })
+            .catch((error) => {
+                const code = error.response.data.code;
+                if (code === 111) {
+                    alert('이미 요청이 되었습니다.');
+                }
+            });
+    };
+
     return (
         <>
             {loading && (
@@ -63,7 +79,10 @@ function BorrowDetail() {
                         </div>
                         <div>
                             {detail.state === 'ACTIVATE' && (
-                                <button className="bg-gray-500 text-white px-3 py-1.5 rounded-md mx-3 text-xs duration-150 hover:duration-150 hover:bg-gray-600">
+                                <button
+                                    className="bg-gray-500 text-white px-3 py-1.5 rounded-md mx-3 text-xs duration-150 hover:duration-150 hover:bg-gray-600"
+                                    onClick={onRequestClick}
+                                >
                                     요청
                                 </button>
                             )}
