@@ -8,6 +8,7 @@ import BorrowDetail from './routes/borrow/BorrowDetail';
 import BorrowCreate from './routes/borrow/BorrowCreate';
 import Chat from './routes/Chat';
 import Profile from './routes/Profile';
+import FindPassword from './routes/find_password/FindPassword';
 
 function App() {
     return (
@@ -18,7 +19,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     {/* TODO 비밀번호 찾기*/}
                     <Route path="/login" element={<Login />} />
-
+                    <Route path="/password" element={<FindPassword />} />
                     <Route path="/join" element={<Join />} />
                     {/* TODO paging */}
                     <Route path="/borrow" element={<Borrow />} />

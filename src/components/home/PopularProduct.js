@@ -16,7 +16,6 @@ function PopularProduct() {
         axios
             .get(`/borrow/popular/${sortBy}`)
             .then((response) => {
-                console.log(response);
                 setData(response.data.productList);
             })
             .catch((error) => {

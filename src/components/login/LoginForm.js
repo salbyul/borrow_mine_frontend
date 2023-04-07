@@ -80,10 +80,10 @@ function LoginForm() {
                         가입하기
                     </a>
                     <a
-                        href="/"
+                        href="/password"
                         className="text-gray-500 text-xs hover:text-gray-600"
                     >
-                        비밀번호 찾기
+                        비밀번호를 잊어버리셨나요?
                     </a>
                 </div>
             </div>

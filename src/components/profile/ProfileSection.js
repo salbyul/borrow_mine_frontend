@@ -43,17 +43,6 @@ function ProfileSection({ initPath, changedPath }) {
                         내가 쓴 글
                     </button>
                 </Link>
-                <Link to="/profile/request/received">
-                    <button
-                        className={`my-5 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
-                            path === 'request/received' &&
-                            'font-semibold text-gray-700'
-                        }`}
-                        onClick={() => setPath('request/received')}
-                    >
-                        받은 요청
-                    </button>
-                </Link>
                 <Link to="/profile/borrow/history">
                     <button
                         className={`my-5 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
@@ -63,6 +52,17 @@ function ProfileSection({ initPath, changedPath }) {
                         onClick={() => setPath('borrow/history')}
                     >
                         거래
+                    </button>
+                </Link>
+                <Link to="/profile/request/received">
+                    <button
+                        className={`my-5 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
+                            path === 'request/received' &&
+                            'font-semibold text-gray-700'
+                        }`}
+                        onClick={() => setPath('request/received')}
+                    >
+                        받은 요청
                     </button>
                 </Link>
                 <Link to="/profile/request/sent">
