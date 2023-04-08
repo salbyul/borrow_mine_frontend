@@ -29,7 +29,7 @@ function LoginForm() {
         axios
             .post('http://localhost:8080/member/login', member)
             .then((response) => {
-                setCookie('SKAT', response.data.token);
+                setCookie('SKAT', response.data.accessToken);
                 if (searchParams.get('re')) {
                     window.location.href = `/${searchParams
                         .get('re')

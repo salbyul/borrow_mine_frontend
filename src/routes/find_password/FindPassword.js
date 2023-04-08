@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useCookies } from 'react-cookie';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 import JoinValidator from '../../components/join/JoinValidator';
 
@@ -32,7 +31,7 @@ function FindPassword() {
             address: { street, zipcode },
         };
         axios
-            .post('/member/password/validate', member)
+            .post('/member/password/forget/validate', member)
             .then((response) => {
                 setUuid(response.data);
                 setAfter(true);
@@ -52,7 +51,7 @@ function FindPassword() {
         };
 
         axios
-            .post('/member/password/change', dto)
+            .post('/member/password/forget/change', dto)
             .then((response) => {
                 alert('변경되었습니다.');
                 window.location.href = '/login';

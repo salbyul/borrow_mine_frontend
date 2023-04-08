@@ -19,11 +19,12 @@ function getCookie(cname) {
     }
     return '';
 }
-const token = getCookie('SKAT');
-if (token !== '' && token !== undefined && token !== null) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+const accessToken = getCookie('SKAT');
+if (accessToken !== '' && accessToken !== undefined && accessToken !== null) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
 }
 axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
