@@ -18,13 +18,6 @@ function Home() {
                     <hr className="my-5" />
                     <SmallBorrowList />
                 </div>
-                {/* <div>
-                    <a href="/borrow" className="text-3xl">
-                        Borrow
-                    </a>
-                    <hr className="my-5" />
-                    <SmallBorrowList />
-                </div> */}
             </div>
         </>
     );

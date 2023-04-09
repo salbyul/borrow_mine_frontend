@@ -21,15 +21,13 @@ function CommentForm({ comments, token }) {
             return;
         }
         const comment = {
-            borrowPostId: location.pathname.substring(
-                location.pathname.length - 1
-            ),
+            borrowPostId: location.pathname.substring(8),
             content: text,
         };
         axios
             .put('/comment/save', comment)
             .then((response) => {
-                window.location.href = `${location.pathname}?#form`;
+                window.location.reload();
             })
             .catch((error) => {});
     };
@@ -46,8 +44,12 @@ function CommentForm({ comments, token }) {
                 alert('신고가 완료되었습니다.');
             })
             .catch((error) => {
-                if (error.response.data.code === 111) {
+                console.log(error);
+                const code = error.response.data.code;
+                if (code === 111) {
                     alert('신고는 한번만 가능합니다.');
+                } else if (code === 222) {
+                    alert('자신의 댓글에 신고를 할 수 없습니다.');
                 }
             });
     };
@@ -82,8 +84,6 @@ function CommentForm({ comments, token }) {
             </div>
             <div className="flex mt-5" id="form">
                 <textarea
-                    name="h"
-                    id="h"
                     rows="5"
                     className="border w-full pl-1 resize-none rounded-l-md text-gray-700"
                     placeholder="내용을 입력해주세요."

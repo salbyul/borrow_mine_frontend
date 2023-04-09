@@ -1,6 +1,5 @@
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useLocation } from 'react-router-dom';
@@ -11,17 +10,12 @@ function Header() {
     const [nickname, setNickname] = useState('');
     const location = useLocation();
     useEffect(() => {
-        if (cookies.SKAT) {
-            axios
-                .get('/header')
-                .then((response) => {
-                    setNickname(response.data);
-                    setCookie('nickname', response.data);
-                })
-                .catch((error) => {
-                    removeCookie('SKAT');
-                    removeCookie('nickname');
-                });
+        console.log(document.cookie);
+        if (cookies.SKAT && cookies.nickname) {
+            setNickname(cookies.nickname);
+        } else {
+            removeCookie('SKAT');
+            removeCookie('nickname');
         }
     }, []);
 

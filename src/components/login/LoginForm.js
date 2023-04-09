@@ -1,12 +1,10 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useCookies } from 'react-cookie';
 import { useSearchParams } from 'react-router-dom';
 
 function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [cookies, setCookie, removeCookie] = useCookies([]);
     const [searchParams, setSearchParams] = useSearchParams();
 
     const onEmailChange = (e) => {
@@ -29,7 +27,6 @@ function LoginForm() {
         axios
             .post('http://localhost:8080/member/login', member)
             .then((response) => {
-                setCookie('SKAT', response.data.accessToken);
                 if (searchParams.get('re')) {
                     window.location.href = `/${searchParams
                         .get('re')
