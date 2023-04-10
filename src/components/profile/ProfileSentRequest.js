@@ -41,7 +41,7 @@ function ProfileSentRequest() {
                                     <td>{`${c.period.startDate} ~ ${c.period.endDate}`}</td>
                                     <td>{c.createdDate.substring(0, 10)}</td>
                                     <td
-                                        className={`${
+                                        className={`font-normal ${
                                             c.state === 'ACCEPT' &&
                                             'text-green-700'
                                         } ${
@@ -49,7 +49,11 @@ function ProfileSentRequest() {
                                             'text-red-700'
                                         }`}
                                     >
-                                        {c.state}
+                                        {c.state === 'WAIT'
+                                            ? '대기'
+                                            : c.state === 'ACCEPT'
+                                            ? '수락'
+                                            : '거절'}
                                     </td>
                                     <td>
                                         <button

@@ -17,14 +17,15 @@ function App() {
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    {/* TODO 비밀번호 찾기*/}
                     <Route path="/login" element={<Login />} />
                     <Route path="/password" element={<FindPassword />} />
                     <Route path="/join" element={<Join />} />
                     {/* TODO paging */}
                     <Route path="/borrow" element={<Borrow />} />
-                    {/* TODO 요청 */}
-                    <Route path="/borrow/:id" element={<BorrowDetail />} />
+                    <Route
+                        path="/borrow/detail/:id"
+                        element={<BorrowDetail />}
+                    />
                     <Route path="/borrow/create" element={<BorrowCreate />} />
                     <Route path="/chat" element={<Chat />} />
                     <Route path="/chat/:nickname" element={<Chat />} />

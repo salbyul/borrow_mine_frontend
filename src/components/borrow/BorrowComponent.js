@@ -2,7 +2,7 @@ function BorrowComponent({ post }) {
     return (
         <>
             <div className="w-2/12 mb-12 duration-300 hover:w-3/12 hover:duration-300">
-                <a href={`/borrow/${post.id}`}>
+                <a href={`/borrow/detail/${post.id}`}>
                     {post.imageDtoList[0] && (
                         <img
                             src={`data:image/jpeg;base64,${post.imageDtoList[0].image}`}

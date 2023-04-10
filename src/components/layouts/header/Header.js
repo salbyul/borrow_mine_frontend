@@ -10,7 +10,6 @@ function Header() {
     const [nickname, setNickname] = useState('');
     const location = useLocation();
     useEffect(() => {
-        console.log(document.cookie);
         if (cookies.SKAT && cookies.nickname) {
             setNickname(cookies.nickname);
         } else {

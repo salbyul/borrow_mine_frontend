@@ -9,6 +9,7 @@ import BorrowDropdown from '../../components/borrow/BorrowDropdown';
 
 function BorrowDetail() {
     const [detail, setDetail] = useState({});
+    const [id, setId] = useState('');
     const [loading, setLoading] = useState(false);
     const [token, setToken] = useState('');
     const [cookies, setCookie, removeCookie] = useCookies(['']);
@@ -21,8 +22,9 @@ function BorrowDetail() {
     }, [detail]);
 
     useEffect(() => {
+        setId(location.pathname.substring(15));
         axios
-            .get(`/borrow/${location.pathname.substring(8)}`)
+            .get(`/borrow/${location.pathname.substring(15)}`)
             .then((response) => {
                 setDetail(response.data.borrowDetail);
                 if (cookies.SKAT) {
@@ -31,6 +33,8 @@ function BorrowDetail() {
             })
             .catch((error) => {
                 console.log(error);
+                alert('잘못된 접근입니다.');
+                window.location.href = '/';
             });
     }, []);
     const onReportClick = () => {
@@ -40,7 +44,7 @@ function BorrowDetail() {
             return;
         }
         axios
-            .put(`/borrow/report/${location.pathname.substring(8)}`)
+            .put(`/borrow/report/${location.pathname.substring(15)}`)
             .then((response) => {
                 alert('신고가 완료되었습니다.');
             })
@@ -52,7 +56,7 @@ function BorrowDetail() {
     };
 
     const onRequestClick = () => {
-        const id = location.pathname.substring(8);
+        const id = location.pathname.substring(15);
         axios
             .put(`/borrow/request?id=${id}`)
             .then((response) => {
@@ -65,9 +69,24 @@ function BorrowDetail() {
                 } else if (code === 222) {
                     alert('자신의 게시물에 요청을 할 수 없습니다.');
                 } else if (code === 444 || 555) {
-                    alert('요청할 수 없는 게시물입니다.')
+                    alert('요청할 수 없는 게시물입니다.');
                 }
             });
+    };
+
+    const ondeleteClick = () => {
+        if (window.confirm('진짜 삭제하시겠습니까?')) {
+            axios
+                .delete(`/borrow/delete/${id}`)
+                .then((response) => {
+                    console.log(response);
+                    alert('삭제가 완료되었습니다.');
+                    window.location.href = '/borrow/';
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     };
 
     return (
@@ -82,13 +101,26 @@ function BorrowDetail() {
                             </span>
                         </div>
                         <div>
-                            {detail.state === 'ACTIVATE' && (
-                                <button
-                                    className="bg-gray-500 text-white px-3 py-1.5 rounded-md mx-3 text-xs duration-150 hover:duration-150 hover:bg-gray-600"
-                                    onClick={onRequestClick}
-                                >
-                                    요청
-                                </button>
+                            {detail.nickname !== cookies.nickname ? (
+                                detail.state === 'ACTIVATE' && (
+                                    <span>
+                                        <button
+                                            className="bg-gray-400 text-white px-3 py-1.5 rounded-md mx-3 text-xs duration-150 hover:duration-150 hover:bg-gray-500"
+                                            onClick={onRequestClick}
+                                        >
+                                            요청
+                                        </button>
+                                    </span>
+                                )
+                            ) : (
+                                <span>
+                                    <button
+                                        className="bg-red-400 text-white px-3 py-1.5 rounded-md mx-3 text-xs duration-150 hover:duration-150 hover:bg-red-500"
+                                        onClick={() => ondeleteClick()}
+                                    >
+                                        삭제
+                                    </button>
+                                </span>
                             )}
                             <span className="text-xs text-gray-300 mr-3">
                                 {detail.createdDate.substring(0, 10)}

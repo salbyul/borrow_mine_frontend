@@ -40,7 +40,7 @@ export default function RequestStateDropdown({ state, id }) {
                     } ${change === 'refuse' && 'text-red-700'}`}
                     disabled={change !== ''}
                 >
-                    {currentState}
+                    {currentState === 'WAIT' ? '대기' : currentState}
                 </Menu.Button>
             </div>
 
