@@ -64,6 +64,8 @@ function BorrowDetail() {
                     alert('이미 요청이 되었습니다.');
                 } else if (code === 222) {
                     alert('자신의 게시물에 요청을 할 수 없습니다.');
+                } else if (code === 444 || 555) {
+                    alert('요청할 수 없는 게시물입니다.')
                 }
             });
     };
