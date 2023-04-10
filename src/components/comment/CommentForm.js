@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import CommentDropdown from './CommentDropdown';
 
 function CommentForm({ comments, token }) {
     const [text, setText] = useState('');
@@ -60,7 +61,7 @@ function CommentForm({ comments, token }) {
                     return (
                         <div key={c.id} className="flex py-10 border-b">
                             <div className="w-2/12 text-xs text-gray-700">
-                                {c.nickname}
+                                <CommentDropdown nickname={c.nickname} />
                             </div>
                             <div className="w-7/12 text-sm text-gray-800">
                                 {c.content}
