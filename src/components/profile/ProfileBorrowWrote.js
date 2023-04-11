@@ -9,12 +9,9 @@ function ProfileBorrowWrote() {
         axios
             .get('/borrow/wrote')
             .then((response) => {
-                console.log(response);
                 setList(response.data.borrowPosts);
             })
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch((error) => {});
     }, []);
     return (
         <>

@@ -19,7 +19,6 @@ function ProfileChangePassword() {
         axios
             .post('/member/password/change', data)
             .then((response) => {
-                console.log(response);
                 alert('비밀번호가 변경되었습니다.');
                 setCurrentPassword('');
                 setPassword('');
@@ -27,9 +26,9 @@ function ProfileChangePassword() {
             })
             .catch((error) => {
                 const code = error.response.data.code;
-                if (code === 444) {
+                if (code === 401) {
                     alert('기존의 비밀번호를 확인해주세요.');
-                } else if (code === 455) {
+                } else if (code === 103) {
                     alert('같은 비밀번호로 변경이 불가능합니다.');
                 }
             });

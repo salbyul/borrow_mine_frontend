@@ -87,9 +87,7 @@ function BorrowCreate() {
             .then((response) => {
                 window.location.href = `/borrow/${response.data.id}`;
             })
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch((error) => {});
     };
     return (
         <>

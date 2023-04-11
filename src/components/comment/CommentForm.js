@@ -22,7 +22,7 @@ function CommentForm({ comments, token }) {
             return;
         }
         const comment = {
-            borrowPostId: location.pathname.substring(8),
+            borrowPostId: location.pathname.substring(15),
             content: text,
         };
         axios
@@ -45,11 +45,10 @@ function CommentForm({ comments, token }) {
                 alert('신고가 완료되었습니다.');
             })
             .catch((error) => {
-                console.log(error);
                 const code = error.response.data.code;
-                if (code === 111) {
+                if (code === 202) {
                     alert('신고는 한번만 가능합니다.');
-                } else if (code === 222) {
+                } else if (code === 101) {
                     alert('자신의 댓글에 신고를 할 수 없습니다.');
                 }
             });

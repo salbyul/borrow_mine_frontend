@@ -18,9 +18,7 @@ function PopularProduct() {
             .then((response) => {
                 setData(response.data.productList);
             })
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch((error) => {});
     }, [sortBy]);
     return (
         <>

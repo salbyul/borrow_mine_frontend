@@ -32,7 +32,6 @@ function BorrowDetail() {
                 }
             })
             .catch((error) => {
-                console.log(error);
                 alert('잘못된 접근입니다.');
                 window.location.href = '/';
             });
@@ -49,13 +48,20 @@ function BorrowDetail() {
                 alert('신고가 완료되었습니다.');
             })
             .catch((error) => {
-                if (error.response.data.code === 111) {
+                const code = error.response.data.code;
+                if (code === 201) {
                     alert('신고는 한번만 가능합니다.');
+                } else if (code === 101) {
+                    alert('자신의 게시물에 신고를 할 수 없습니다.');
                 }
             });
     };
 
     const onRequestClick = () => {
+        if (!cookies.SKAT || !cookies.nickname) {
+            alert('로그인 후 이용이 가능합니다.');
+            window.location.href = `/login?re=${location.pathname}`;
+        }
         const id = location.pathname.substring(15);
         axios
             .put(`/borrow/request?id=${id}`)
@@ -64,12 +70,8 @@ function BorrowDetail() {
             })
             .catch((error) => {
                 const code = error.response.data.code;
-                if (code === 111) {
+                if (code === 301) {
                     alert('이미 요청이 되었습니다.');
-                } else if (code === 222) {
-                    alert('자신의 게시물에 요청을 할 수 없습니다.');
-                } else if (code === 444 || 555) {
-                    alert('요청할 수 없는 게시물입니다.');
                 }
             });
     };
@@ -79,13 +81,10 @@ function BorrowDetail() {
             axios
                 .delete(`/borrow/delete/${id}`)
                 .then((response) => {
-                    console.log(response);
                     alert('삭제가 완료되었습니다.');
                     window.location.href = '/borrow/';
                 })
-                .catch((error) => {
-                    console.log(error);
-                });
+                .catch((error) => {});
         }
     };
 

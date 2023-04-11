@@ -12,9 +12,7 @@ function ProfileReceivedRequest() {
             .then((response) => {
                 setList(response.data.requestDtoList);
             })
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch((error) => {});
     }, []);
 
     return (

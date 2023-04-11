@@ -37,7 +37,11 @@ function FindPassword() {
                 setAfter(true);
             })
             .catch((error) => {
-                alert('정보가 올바르지 않습니다.');
+                console.log(error);
+                const code = error.response.data.code;
+                if (code === 444) {
+                    alert('정보가 올바르지 않습니다.');
+                }
             });
     };
 

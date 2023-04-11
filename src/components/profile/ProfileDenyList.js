@@ -12,22 +12,17 @@ function ProfileDenyList() {
                 const list = response.data.denyDtoList;
                 setList(list);
             })
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch((error) => {});
     }, []);
 
     const onRemoveClick = (id) => {
         axios
             .delete(`/member/deny/delete/${id}`)
             .then((response) => {
-                console.log(response);
                 alert('차단이 해제되었습니다.');
                 window.location.reload();
             })
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch((error) => {});
     };
 
     return (

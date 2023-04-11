@@ -15,7 +15,6 @@ export default function RequestStateDropdown({ state, id }) {
             axios
                 .post(`/borrow/request/${word}?id=${id}`)
                 .then((response) => {
-                    console.log(response);
                     if (word === 'accept') {
                         setChange('accept');
                         setCurrentState('수락');
@@ -26,9 +25,7 @@ export default function RequestStateDropdown({ state, id }) {
                         alert('거절하였습니다.');
                     }
                 })
-                .catch((error) => {
-                    console.log(error);
-                });
+                .catch((error) => {});
         }
     };
     return (

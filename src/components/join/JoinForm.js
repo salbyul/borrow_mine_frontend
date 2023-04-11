@@ -74,10 +74,10 @@ function JoinForm() {
             })
             .catch((error) => {
                 const code = error.response.data.code;
-                if (code === 111) {
+                if (code === 101) {
                     alert('이미 가입한 이메일입니다.');
                     setEmailError(true);
-                } else if (code === 222) {
+                } else if (code === 102) {
                     alert('이미 가입한 닉네임입니다.');
                     setNicknameError(true);
                 }

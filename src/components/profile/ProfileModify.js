@@ -3,7 +3,7 @@ import JoinValidator from '../join/JoinValidator';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 import { useEffect, useState } from 'react';
 
-function ProfileHome() {
+function ProfileModify() {
     const [email, setEmail] = useState('');
     const [nickname, setNickname] = useState('');
     const [street, setStreet] = useState('');
@@ -31,9 +31,7 @@ function ProfileHome() {
                 setStreet(member.address.street);
                 setZipcode(member.address.zipcode);
             })
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch((error) => {});
     }, []);
     const onSubmitClick = () => {
         const validator = new JoinValidator();
@@ -59,15 +57,15 @@ function ProfileHome() {
         axios
             .post('/member/info', form)
             .then((response) => {
-                console.log(response);
                 alert('변경이 완료되었습니다.');
                 window.location.reload();
             })
             .catch((error) => {
-                console.log(error);
                 const code = error.response.data.code;
-                if (code === 444) {
+                if (code === 401) {
                     alert('비밀번호를 제대로 입력해주세요.');
+                } else if (code === 102) {
+                    alert('이미 존재하는 별명입니다.');
                 }
             });
     };
@@ -142,4 +140,4 @@ function ProfileHome() {
         </>
     );
 }
-export default ProfileHome;
+export default ProfileModify;

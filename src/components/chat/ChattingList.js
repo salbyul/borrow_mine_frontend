@@ -16,7 +16,6 @@ function ChattingList({ list, target, targetChange }) {
             axios
                 .delete(`/chat/chat-room/delete/${targetList.at(id)}`)
                 .then((response) => {
-                    console.log(response);
                     if (target === targetList.at(id)) {
                         window.location.href = '/chat';
                     }
@@ -24,9 +23,7 @@ function ChattingList({ list, target, targetChange }) {
                     list.splice(id, 1);
                     setTargetList(list);
                 })
-                .catch((error) => {
-                    console.log(error);
-                });
+                .catch((error) => {});
         }
     };
     return (

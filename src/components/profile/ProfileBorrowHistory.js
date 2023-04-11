@@ -8,12 +8,9 @@ function ProfileBorrowHistory() {
         axios
             .get('/borrow/request/accept')
             .then((response) => {
-                console.log(response);
                 setList(response.data.requestAcceptDtoList);
             })
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch((error) => {});
     }, []);
     return (
         <>

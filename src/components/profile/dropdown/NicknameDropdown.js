@@ -31,13 +31,11 @@ export default function NicknameDropdown({ nickname }) {
         axios
             .put(`/member/deny/${nickname}`)
             .then((response) => {
-                console.log(response);
                 alert(`${nickname}님이 차단되었습니다.`);
             })
             .catch((error) => {
-                console.log(error);
                 const code = error.response.data.code;
-                if (code === 123) {
+                if (code === 101) {
                     alert('이미 차단이 되었습니다.');
                 }
             });

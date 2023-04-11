@@ -36,7 +36,8 @@ function LoginForm() {
                 }
             })
             .catch((error) => {
-                if (error.response.data.code === 1) {
+                const code = error.response.data.code;
+                if (code === 400) {
                     alert('아이디나 비밀번호를 확인해주세요.');
                 }
             });

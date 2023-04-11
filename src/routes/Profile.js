@@ -3,7 +3,7 @@ import { useCookies } from 'react-cookie';
 import { useLocation } from 'react-router-dom';
 import ProfileBorrowWrote from '../components/profile/ProfileBorrowWrote';
 import ProfileDenyList from '../components/profile/ProfileDenyList';
-import ProfileHome from '../components/profile/ProfileHome';
+import ProfileModify from '../components/profile/ProfileModify';
 import ProfileReceivedRequest from '../components/profile/ProfileReceivedRequest';
 import ProfileSection from '../components/profile/ProfileSection';
 import ProfileSentRequest from '../components/profile/ProfileSentRequest';
@@ -49,7 +49,7 @@ function Profile() {
                         />
                     </div>
                     <div className="w-9/12 text-center">
-                        {path === '' && <ProfileHome />}
+                        {path === '' && <ProfileModify />}
                         {path === 'password' && <ProfileChangePassword />}
                         {path === 'borrow/wrote' && <ProfileBorrowWrote />}
                         {path === 'borrow/history' && <ProfileBorrowHistory />}
