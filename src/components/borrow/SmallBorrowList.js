@@ -11,9 +11,7 @@ function SmallBorrowList() {
             .then((response) => {
                 setPostList(response.data.borrowPosts);
             })
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch((error) => {});
     }, []);
 
     useEffect(() => {

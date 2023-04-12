@@ -1,6 +1,6 @@
 import BorrowComponent from './BorrowComponent';
 
-function BorrowList({ offset, postList }) {
+function BorrowList({ postList }) {
     return (
         <>
             <div className="flex flex-col items-center">

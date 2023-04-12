@@ -20,7 +20,6 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/password" element={<FindPassword />} />
                     <Route path="/join" element={<Join />} />
-                    {/* TODO paging */}
                     <Route path="/borrow" element={<Borrow />} />
                     <Route
                         path="/borrow/detail/:id"

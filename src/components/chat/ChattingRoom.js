@@ -10,7 +10,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
-// TODO Image 어떻게 줘야 돼...
 function ChattingRoom({ target }) {
     const [message, setMessage] = useState('');
     const [chat, setChat] = useState([]);

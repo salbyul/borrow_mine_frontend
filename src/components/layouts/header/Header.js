@@ -20,8 +20,6 @@ function Header() {
 
     return (
         <>
-            {/* TODO 헤더 화면 상단 고정? 
-                메일 기능 추가해야 댐*/}
             <div className="pt-5 mx-auto pr-10 bg-gray-50 pb-20">
                 <div className="flex justify-end">
                     {nickname === '' ? (

@@ -6,7 +6,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
 }
 
-export default function Dropdown({ nickname }) {
+export default function HeaderDropdown({ nickname }) {
     const [cookies, setCookie, removeCookie] = useCookies([]);
 
     const onLogoutClick = () => {

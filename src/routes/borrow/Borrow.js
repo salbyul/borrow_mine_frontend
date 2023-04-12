@@ -31,16 +31,16 @@ function Borrow() {
     return (
         <>
             <div className="text-center">
-                <BorrowList postList={postList} offset={offset} />
+                <BorrowList postList={postList} />
                 <button
-                    className="my-10 bg-gray-200 px-3 py-1.5 rounded-xl text-gray-400 duration-300 hover:duration-300 hover:bg-gray-300"
+                    className="my-10 bg-gray-50 px-3 py-1.5 rounded-xl text-gray-500 duration-300 hover:duration-300 hover:bg-gray-100"
                     onClick={() => postLoad()}
                 >
                     불러오기
                 </button>
                 <div className="text-end">
                     <button
-                        className="fixed bottom-10 right-10 border rounded-full w-10 duration-300 hover:duration-300 hover:bg-gray-50"
+                        className="fixed bottom-10 right-20 border rounded-full w-10 bg-gray-50"
                         onClick={() => {
                             window.scrollTo(0, 0);
                         }}
