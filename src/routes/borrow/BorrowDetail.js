@@ -6,9 +6,13 @@ import { useLocation } from 'react-router-dom';
 import CommentForm from '../../components/comment/CommentForm';
 import { useCookies } from 'react-cookie';
 import BorrowDropdown from '../../components/borrow/BorrowDropdown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar as faStarFull } from '@fortawesome/free-solid-svg-icons';
 
 function BorrowDetail() {
     const [detail, setDetail] = useState({});
+    const [isBookmark, setIsBookmark] = useState('');
     const [id, setId] = useState('');
     const [loading, setLoading] = useState(false);
     const [token, setToken] = useState('');
@@ -26,7 +30,9 @@ function BorrowDetail() {
         axios
             .get(`/borrow/${location.pathname.substring(15)}`)
             .then((response) => {
+                console.log(response);
                 setDetail(response.data.borrowDetail);
+                setIsBookmark(response.data.isBookmark);
                 if (cookies.SKAT) {
                     setToken(cookies.SKAT);
                 }
@@ -88,6 +94,43 @@ function BorrowDetail() {
         }
     };
 
+    const bookmark = () => {
+        if (!cookies.SKAT) {
+            alert('로그인 후 이용이 가능합니다.');
+            window.location.href = `/login?re=${location.pathname}`;
+            return;
+        }
+        axios
+            .post(
+                `/borrow/bookmark?borrow_post_id=${location.pathname.substring(
+                    15
+                )}`
+            )
+            .then((response) => {
+                console.log(response);
+                setIsBookmark(true);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    const deleteBookmark = () => {
+        axios
+            .delete(
+                `/borrow/bookmark?borrow_post_id=${location.pathname.substring(
+                    15
+                )}`
+            )
+            .then((response) => {
+                console.log(response);
+                setIsBookmark(false);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
     return (
         <>
             {loading && (
@@ -96,6 +139,21 @@ function BorrowDetail() {
                     <div className="flex justify-between">
                         <div>
                             <span className="text-2xl text-gray-700">
+                                {isBookmark ? (
+                                    <button
+                                        className="mr-4 text-yellow-200"
+                                        onClick={() => deleteBookmark()}
+                                    >
+                                        <FontAwesomeIcon icon={faStarFull} />
+                                    </button>
+                                ) : (
+                                    <button
+                                        className="mr-4"
+                                        onClick={() => bookmark()}
+                                    >
+                                        <FontAwesomeIcon icon={faStar} />
+                                    </button>
+                                )}
                                 {detail.title}
                             </span>
                         </div>

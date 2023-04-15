@@ -85,7 +85,7 @@ function BorrowCreate() {
         axios
             .put('/borrow/create', data)
             .then((response) => {
-                window.location.href = `/borrow/${response.data.id}`;
+                window.location.href = `/borrow/detail/${response.data.id}`;
             })
             .catch((error) => {});
     };

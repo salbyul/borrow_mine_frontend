@@ -43,6 +43,16 @@ function ProfileSection({ initPath, changedPath }) {
                         내가 쓴 글
                     </button>
                 </Link>
+                <Link to="/profile/bookmark">
+                    <button
+                        className={`my-5 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${
+                            path === 'bookmark' && 'font-semibold text-gray-700'
+                        }`}
+                        onClick={() => setPath('bookmark')}
+                    >
+                        즐겨찾기
+                    </button>
+                </Link>
                 <Link to="/profile/borrow/history">
                     <button
                         className={`my-5 py-1 w-full duration-150 text-gray-500 rounded-md text-sm hover:duration-150 hover:bg-gray-200 ${

@@ -9,6 +9,7 @@ import ProfileSection from '../components/profile/ProfileSection';
 import ProfileSentRequest from '../components/profile/ProfileSentRequest';
 import ProfileBorrowHistory from '../components/profile/ProfileBorrowHistory';
 import ProfileChangePassword from '../components/profile/ProfileChangePassword';
+import ProfileBookmark from '../components/profile/ProfileBookmark';
 
 function Profile() {
     const [path, setPath] = useState('');
@@ -58,6 +59,7 @@ function Profile() {
                         )}
                         {path === 'request/sent' && <ProfileSentRequest />}
                         {path === 'deny/list' && <ProfileDenyList />}
+                        {path === 'bookmark' && <ProfileBookmark />}
                     </div>
                 </div>
             )}
