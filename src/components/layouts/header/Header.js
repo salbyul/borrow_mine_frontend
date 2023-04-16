@@ -20,7 +20,7 @@ function Header() {
 
     return (
         <>
-            <div className="pt-5 mx-auto pr-10 bg-gray-50 pb-20">
+            <div className="pt-5 mx-auto pr-10 pb-20 bg-gray-50">
                 <div className="flex justify-end">
                     {nickname === '' ? (
                         <a
@@ -39,9 +39,16 @@ function Header() {
                     )}
                 </div>
                 <div className="text-center">
-                    <a href="/" className="text-7xl text-gray-700">
-                        Borrow Mine
-                    </a>
+                    <button
+                        onClick={() => (window.location.href = '/')}
+                        className="w-3/12"
+                    >
+                        <img
+                            src="/imgs/logo/borrow_mine.png"
+                            alt="logo"
+                            className="pt-10 mx-auto w-max"
+                        />
+                    </button>
                 </div>
             </div>
             <hr className="mb-20" />
