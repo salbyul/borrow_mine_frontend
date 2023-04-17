@@ -43,6 +43,13 @@ function PopularProduct() {
                         역대
                     </button>
                 </div>
+                <div className="mt-5 flex justify-evenly">
+                    <div className="w-1/12 text-center text-gray-600">순위</div>
+                    <div className="w-5/12 text-center text-gray-800">
+                        제품명
+                    </div>
+                    <div className="w-3/12 text-cetner text-gray-600">횟수</div>
+                </div>
                 {isLoading &&
                     data.map((p) => {
                         return (
