@@ -231,7 +231,13 @@ function BorrowDetail() {
                             </Carousel>
                         </div>
                         <div className="text-start">
-                            <div className="mt-10 mb-20">{detail.content}</div>
+                            <div className="mt-10 mb-20">
+                                <textarea
+                                    disabled
+                                    className="resize-none bg-white hover:cursor-text"
+                                    value={detail.content}
+                                />
+                            </div>
                             <div>
                                 <div>가격: {detail.price}</div>
                                 <div>주소: {detail.address.street}</div>
