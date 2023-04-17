@@ -44,7 +44,7 @@ function ProfileBorrowHistory() {
                                         <button
                                             className="px-3 bg-gray-100 rounded-md"
                                             onClick={() =>
-                                                (window.location.href = `/borrow/${c.borrowPostId}`)
+                                                (window.location.href = `/borrow/detail/${c.borrowPostId}`)
                                             }
                                         >
                                             Click

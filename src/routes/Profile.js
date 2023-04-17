@@ -42,7 +42,7 @@ function Profile() {
     return (
         <>
             {loading && (
-                <div className="flex w-7/12 mx-auto justify-center border rounded-md">
+                <div className="flex w-7/12 mx-auto justify-center border rounded-md mb-20">
                     <div className="border-r w-3/12 text-center py-10">
                         <ProfileSection
                             changedPath={changedPath}
